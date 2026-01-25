@@ -26,6 +26,11 @@ jobs:
         run: |
           git checkout -b build || git checkout build
 
+      - name: Pull changes from build branch
+        run: |
+          git fetch origin build
+          git reset --hard origin/build
+
       - name: Pull changes from main branch
         run: |
           git fetch origin main
@@ -48,5 +53,4 @@ jobs:
         run: |
           git add .
           git commit -m "Build update from main"
-          git remote set-url --push origin https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/${{ github.repository }}.git
           git push origin build
