@@ -568,7 +568,7 @@ void execute_command() {
     } else if (strcmp(input_buffer, "clear") == 0) {
         terminal_clear();
     } else if (strcmp(input_buffer, "info") == 0) {
-        terminal_write("Jeb OS v1.0 x86-64\n");
+        terminal_write("Jeb OS v7.9 x86-64\n");
         terminal_write("Architecture: x86-64 (64-bit)\n");
         terminal_write("Features: ACPI, ATA disk-based history, kernel panic\n\n");
     } else if (strcmp(input_buffer, "reboot") == 0) {
@@ -581,6 +581,9 @@ void execute_command() {
         acpi_shutdown();
 //  } else if (strcmp(input_buffer, "panic") == 0) {
 //      kernel_panic("User", "Manual panic triggered via command", "Restart the system");
+    } else if (strcmp(input_buffer, "version") == 0) {
+        terminal_write("Current JebOS version: 7.9\n");
+
     } else {
         terminal_write("Unknown command: ");
         terminal_write(input_buffer);
@@ -595,7 +598,7 @@ void kernel_main(void) {
     enable_cursor(13, 15);
     terminal_clear();
     if(ata_identify()) load_history_from_disk();
-    terminal_write("=== Jeb OS v1.0 ===\n");
+    terminal_write("=== Jeb OS v7.9 ===\n");
     terminal_write("Type 'help' for commands\n\n");
     terminal_write("Jeeb> ");
     uint8_t last_scancode = 0;
